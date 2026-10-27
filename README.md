@@ -2,6 +2,8 @@
 
 A full-stack, collision-safe customer support ticketing system with real-time updates, autonomous lease tracking, and SLA monitoring.
 
+![Helpdesk Workspace Landing Page](docs/screenshots/landing-page.png)
+
 ## Project Structure
 
 - `server/`: Backend API built with Bun, Express, PostgreSQL, and Socket.IO.

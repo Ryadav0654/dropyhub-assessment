@@ -2,6 +2,8 @@
 
 A modern, clean, real-time frontend dashboard for the customer support ticketing system built with React, Vite, TypeScript, Tailwind CSS, and Socket.IO.
 
+![Helpdesk Workspace Landing Page](../docs/screenshots/landing-page.png)
+
 ## Features
 
 - **Agent Workspace**:
