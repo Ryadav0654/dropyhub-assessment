@@ -1,0 +1,32 @@
+[
+  {
+    "ticket_id": "TKT-9001",
+    "customer_name": "Ravi Kumar",
+    "customer_email": "ravi@example.com",
+    "subject": "Payment deducted but order failed",
+    "description": "I tried to buy a premium subscription, my card was charged, but my account still says free.",
+    "created_at": "2026-09-21T10:30:00Z",
+    "urgency": "High",
+    "status": "Open"
+  },
+  {
+    "ticket_id": "TKT-9002",
+    "customer_name": "Anita Desai",
+    "customer_email": "anita@example.com",
+    "subject": "Cannot change password",
+    "description": "The password reset link in my email is giving me a 404 error.",
+    "created_at": "2026-09-22T08:15:00Z",
+    "urgency": "Medium",
+    "status": "Open"
+  },
+  {
+    "ticket_id": "TKT-9003",
+    "customer_name": "Vikram Singh",
+    "customer_email": "vikram@example.com",
+    "subject": "Feature request: Dark Mode",
+    "description": "Please add a dark mode to the dashboard, it is too bright at night.",
+    "created_at": "2026-09-22T12:00:00Z",
+    "urgency": "Low",
+    "status": "Open"
+  }
+]

@@ -1,0 +1,28 @@
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
+
+@theme {
+  --color-canvas: #f8f9fa;
+  --color-canvas-subtle: #f1f3f5;
+  --color-canvas-muted: #e9ecef;
+}
+
+@layer base {
+  body {
+    /* Eye-comfort soft off-white canvas (#F8F9FA) - calm on the eyes, avoids high-contrast glare */
+    @apply bg-canvas text-slate-800 antialiased selection:bg-blue-100 selection:text-blue-900;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* Custom subtle scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 rounded-full hover:bg-slate-400;
+}

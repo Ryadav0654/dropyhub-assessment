@@ -1,0 +1,60 @@
+services:
+  database:
+    image: postgres:18-alpine
+    container_name: dropyhub_assingment_db
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: dropyhubDB
+    volumes:
+      - pg_database_data:/var/lib/postgresql/data
+      - ./server/src/database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d dropyhubDB"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: dropyhub_backend
+    restart: unless-stopped
+    ports:
+      - "${SERVER_PORT:-8080}:8080"
+    environment:
+      PORT: 8080
+      DATABASE_URL: postgres://postgres:password@database:5432/dropyhubDB
+      CORS_ORIGIN: http://localhost:5173
+      NODE_ENV: production
+    depends_on:
+      database:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:8080/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: http://localhost:8080/api/tickets
+        VITE_SOCKET_URL: http://localhost:8080
+    container_name: dropyhub_frontend
+    restart: unless-stopped
+    ports:
+      - "${CLIENT_PORT:-5173}:5173"
+    depends_on:
+      server:
+        condition: service_healthy
+
+volumes:
+  pg_database_data:
